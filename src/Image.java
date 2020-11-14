@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.io.*;
-import java.awt.event.*;
 
 public class Image {
 public static void main(String[] args) {	  
     JFrame frame = new ImageViewerFrame();
+    
     try {
         
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -36,12 +36,12 @@ public static void main(String[] args) {
 class ImageViewerFrame extends JFrame {
   
 	
-	 JLabel label;
-	 JFileChooser chooser;
-	 JMenuBar menubar;
-	 JMenu menu;
-	 JMenuItem open;
-	 JMenuItem exit;
+	 static JLabel label;
+	 static JFileChooser chooser;
+	 static JMenuBar menubar;
+	 static JMenu menu;
+	 static JMenuItem open;
+	 static JMenuItem exit;
 	 
  public ImageViewerFrame() {
   
@@ -63,38 +63,14 @@ class ImageViewerFrame extends JFrame {
   menubar.add(menu);
   
   open = new JMenuItem("Open");
+  open.setAccelerator(KeyStroke.getKeyStroke("alt O"));
+  open.addActionListener(new Impreter());
   menu.add(open);
   
   exit = new JMenuItem("Exit");
+  exit.setAccelerator(KeyStroke.getKeyStroke("alt F4"));
+  exit.addActionListener(new Impreter());		
   menu.add(exit);
-  
-  exit.addActionListener(new ActionListener() 
-  {
-	
-	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
-		exit.addActionListener(new Impreter());		
-	}
-});
-  open.addActionListener(new ActionListener() 
-  {
-   
-   public void actionPerformed(ActionEvent event) 
-   {
-    
-
-    int result = chooser.showOpenDialog(null);
-    
-
-    if(result == JFileChooser.APPROVE_OPTION) 
-    {
-     String name = chooser.getSelectedFile().getPath();
-     label.setIcon(new ImageIcon(name));
-     
-    }
-   }
-  });
  }
  
 }
