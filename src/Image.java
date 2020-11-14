@@ -43,10 +43,8 @@ class ImageViewerFrame extends JFrame {
 	 static JMenuItem open;
 	 static JMenuItem exit;
 	 
- public ImageViewerFrame() {
-  
+ public ImageViewerFrame() {	 
   setSize(500,500);
-  
 
   label = new JLabel();
   add(label);
